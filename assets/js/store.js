@@ -49,15 +49,25 @@
         <div class="card-body">
           <h3 class="card-name">${S.esc(p.name)}</h3>
           <div class="card-price">${S.formatPrice(p.price)}</div>
-          <span class="btn btn-secondary btn-block">مشاهده و خرید</span>
         </div>
       </a>`).join('');
+    // The first product in the admin list is featured at the top.
+    const f = products[0];
+    const feature = f ? `
+      <section class="feature" aria-labelledby="featureName">
+        <div class="feature-img"><img src="${S.productImage(f)}" alt="" width="400" height="500"></div>
+        <div class="feature-body">
+          <span class="feature-tag">پیشنهاد ما</span>
+          <h2 id="featureName">${S.esc(f.name)}</h2>
+          <div class="feature-price">${S.formatPrice(f.price)}</div>
+          <p class="feature-desc">${S.esc(f.description)}</p>
+          <a class="btn" href="#/p/${encodeURIComponent(f.id)}">مشاهده و خرید</a>
+        </div>
+      </section>` : '';
     app.innerHTML = `
-      <section class="hero">
-        <h1>${S.esc(settings.storeName)}</h1>
-        <p>${S.esc(settings.tagline)}</p>
-      </section>
-      <h2 class="section-title">محصولات</h2>
+      <h1 class="tagline">${S.esc(settings.tagline || settings.storeName)}</h1>
+      ${feature}
+      <h2 class="section-title">همه محصولات</h2>
       ${products.length ? `<div class="grid">${cards}</div>` : emptyState('box', 'هنوز محصولی ثبت نشده', 'به‌زودی محصولات جدید اضافه می‌شوند.', false)}`;
   }
 
@@ -195,13 +205,13 @@
           <div class="field" id="fName">
             <label for="name">نام و نام خانوادگی</label>
             <input class="input" id="name" name="name" autocomplete="name" placeholder="مثلاً: مریم احمدی" required>
-            <div class="error" id="nameErr">لطفاً نام خود را بنویسید.</div>
+            <div class="field-error" id="nameErr">لطفاً نام خود را بنویسید.</div>
           </div>
           <div class="field" id="fPhone">
             <label for="phone">شماره موبایل</label>
             <input class="input ltr" id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="۰۹۱۲۳۴۵۶۷۸۹" maxlength="16" required>
             <div class="hint">۱۱ رقم، با ۰۹ شروع می‌شود</div>
-            <div class="error" id="phoneErr">شماره موبایل درست نیست. مثال درست: ۰۹۱۲۳۴۵۶۷۸۹</div>
+            <div class="field-error" id="phoneErr">شماره موبایل درست نیست. مثال درست: ۰۹۱۲۳۴۵۶۷۸۹</div>
           </div>
           <button class="btn btn-primary btn-lg btn-block" type="submit">${S.icon('check')}ثبت نهایی سفارش</button>
         </form>

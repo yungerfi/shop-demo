@@ -21,7 +21,7 @@
           <div class="field" id="fPass">
             <label for="pass">رمز عبور</label>
             <input class="input" id="pass" type="password" inputmode="numeric" autocomplete="current-password" aria-describedby="passErr">
-            <div class="error" id="passErr">رمز اشتباه است.</div>
+            <div class="field-error" id="passErr">رمز اشتباه است.</div>
           </div>
           <button class="btn btn-primary btn-lg btn-block" type="submit">ورود</button>
           <a class="btn btn-ghost btn-block" href="../">${S.icon('store')}بازگشت به فروشگاه</a>
@@ -210,12 +210,12 @@
         <div class="field" id="fName">
           <label for="name">نام محصول</label>
           <input class="input" id="name" value="${editing ? S.esc(editing.name) : ''}" placeholder="مثلاً: پیراهن مردانه" autocomplete="off">
-          <div class="error">نام محصول را بنویسید.</div>
+          <div class="field-error">نام محصول را بنویسید.</div>
         </div>
         <div class="field" id="fPrice">
           <label for="price">قیمت (تومان)</label>
           <input class="input ltr" id="price" inputmode="numeric" autocomplete="off" value="${editing ? S.formatNumber(editing.price) : ''}" placeholder="۰">
-          <div class="error">قیمت را درست وارد کنید.</div>
+          <div class="field-error">قیمت را درست وارد کنید.</div>
         </div>
         <div class="field">
           <label for="desc">توضیحات</label>
@@ -333,7 +333,7 @@
         <div class="field" id="fStore">
           <label for="storeName">نام فروشگاه</label>
           <input class="input" id="storeName" value="${S.esc(s.storeName)}">
-          <div class="error">نام فروشگاه را بنویسید.</div>
+          <div class="field-error">نام فروشگاه را بنویسید.</div>
         </div>
         <div class="field">
           <label for="tagline">شعار کوتاه</label>
@@ -344,7 +344,7 @@
           <label for="telegram">نام کاربری تلگرام</label>
           <div class="at-prefix"><input class="input ltr" id="telegram" dir="ltr" value="${S.esc(s.telegram)}" autocomplete="off" autocapitalize="off" spellcheck="false"></div>
           <div class="hint">مشتری بعد از ثبت سفارش، رسید را به این آیدی می‌فرستد.</div>
-          <div class="error">فقط حروف انگلیسی، عدد و _ (حداقل ۵ حرف).</div>
+          <div class="field-error">فقط حروف انگلیسی، عدد و _ (حداقل ۵ حرف).</div>
         </div>
         <button class="btn btn-primary btn-lg btn-block" type="submit">${S.icon('check')}ذخیره تنظیمات</button>
       </form>
