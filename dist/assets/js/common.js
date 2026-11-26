@@ -279,18 +279,16 @@
   function placeholder(kind, paletteIndex) {
     const key = kind + paletteIndex;
     if (phCache.has(key)) return phCache.get(key);
-    const [c1, c2] = PALETTES[(paletteIndex || 0) % PALETTES.length];
+    const [, c2] = PALETTES[(paletteIndex || 0) % PALETTES.length];
     const s = SHAPES[kind] || SHAPES.bag;
     const floor = s.floor || 418;
-    const dots = (s.dots || []).map(([x, y]) => `<circle cx="${x}" cy="${y}" r="6" fill="${c2}" opacity=".75"/>`).join('');
+    const dots = (s.dots || []).map(([x, y]) => `<circle cx="${x}" cy="${y}" r="6" fill="#fff" opacity=".7"/>`).join('');
     const svg =
       `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">` +
-      `<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs>` +
-      `<rect width="400" height="500" fill="url(#g)"/>` +
-      `<circle cx="345" cy="65" r="115" fill="#fff" opacity=".2"/><circle cx="30" cy="470" r="150" fill="#fff" opacity=".13"/>` +
-      `<ellipse cx="200" cy="${floor}" rx="140" ry="14" fill="#000" opacity=".09"/>` +
-      `<path d="${s.body}" fill="#fff" opacity=".96"/>` +
-      `<path d="${s.detail}" fill="none" stroke="${c2}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>` +
+      `<rect width="400" height="500" fill="#E7E8E3"/>` +
+      `<ellipse cx="200" cy="${floor}" rx="140" ry="14" fill="#1A2033" opacity=".1"/>` +
+      `<path d="${s.body}" fill="${c2}"/>` +
+      `<path d="${s.detail}" fill="none" stroke="#1A2033" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".22"/>` +
       dots + `</svg>`;
     const uri = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
     phCache.set(key, uri);
